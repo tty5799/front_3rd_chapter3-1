@@ -42,7 +42,7 @@ describe('parseDateTime', () => {
 describe('convertEventToDateRange', () => {
   it('일반적인 이벤트를 올바른 시작 및 종료 시간을 가진 객체로 변환한다', () => {
     const event: Event = {
-      id: '2b7545a6-ebee-426c-b906-2329bc8d62bd',
+      id: '1',
       title: '팀 회의',
       date: '2024-11-01',
       startTime: '10:00',
@@ -64,7 +64,7 @@ describe('convertEventToDateRange', () => {
 
   it('잘못된 날짜 형식의 이벤트에 대해 Invalid Date를 반환한다', () => {
     const event: Event = {
-      id: '2b7545a6-ebee-426c-b906-2329bc8d62bd',
+      id: '1',
       title: '팀 회의',
       date: '',
       startTime: '10:00',
@@ -82,7 +82,7 @@ describe('convertEventToDateRange', () => {
 
   it('잘못된 시간 형식의 이벤트에 대해 Invalid Date를 반환한다', () => {
     const event: Event = {
-      id: '2b7545a6-ebee-426c-b906-2329bc8d62bd',
+      id: '1',
       title: '팀 회의',
       date: '2024-11-01',
       startTime: '',
@@ -103,7 +103,7 @@ describe('isOverlapping', () => {
   it('두 이벤트가 겹치는 경우 true를 반환한다', () => {
     const events: Event[] = [
       {
-        id: '2b7545a6-ebee-426c-b906-2329bc8d62bd',
+        id: '1',
         title: '팀 회의',
         date: '2024-11-01',
         startTime: '10:00',
@@ -115,7 +115,7 @@ describe('isOverlapping', () => {
         notificationTime: 1,
       },
       {
-        id: '2b7545a6-ebee-426c-b906-2329bc8d62bd',
+        id: '2',
         title: '팀 회의',
         date: '2024-11-01',
         startTime: '10:00',
@@ -134,7 +134,7 @@ describe('isOverlapping', () => {
   it('두 이벤트가 겹치지 않는 경우 false를 반환한다', () => {
     const events: Event[] = [
       {
-        id: '2b7545a6-ebee-426c-b906-2329bc8d62bd',
+        id: '1',
         title: '팀 회의',
         date: '2024-11-01',
         startTime: '10:00',
@@ -146,7 +146,7 @@ describe('isOverlapping', () => {
         notificationTime: 1,
       },
       {
-        id: '2b7545a6-ebee-426c-b906-2329bc8d62bd',
+        id: '2',
         title: '팀 회의',
         date: '2024-11-11',
         startTime: '12:00',
