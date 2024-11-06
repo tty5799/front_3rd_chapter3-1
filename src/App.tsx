@@ -32,18 +32,19 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { useRef } from 'react';
+
+import MonthView from './components/calender/MonthView.tsx';
+import WeekView from './components/calender/WeekView.tsx';
+import { categories, notificationOptions } from './constants';
 import { useCalendarView } from './hooks/useCalendarView.ts';
 import { useEventForm } from './hooks/useEventForm.ts';
 import { useEventOperations } from './hooks/useEventOperations.ts';
+import useEventOverlapCheck from './hooks/useEventOverlapCheck.ts';
+import useEventValidation from './hooks/useEvnetValidation.ts';
 import { useNotifications } from './hooks/useNotifications.ts';
 import { useSearch } from './hooks/useSearch.ts';
 import { Event, EventForm, RepeatType } from './types';
 import { getTimeErrorMessage } from './utils/timeValidation';
-import WeekView from './components/calender/WeekView.tsx';
-import MonthView from './components/calender/MonthView.tsx';
-import { categories, notificationOptions } from './constants';
-import useEventOverlapCheck from './hooks/useEventOverlapCheck.ts';
-import useEventValidation from './hooks/useEvnetValidation.ts';
 
 function App() {
   const {

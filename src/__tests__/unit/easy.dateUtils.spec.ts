@@ -1,3 +1,5 @@
+import { expect } from 'vitest';
+
 import { Event } from '../../types';
 import {
   fillZero,
@@ -10,7 +12,6 @@ import {
   getWeeksAtMonth,
   isDateInRange,
 } from '../../utils/dateUtils';
-import { expect } from 'vitest';
 
 describe('getDaysInMonth', () => {
   it('1월은 31일 수를 반환한다', () => {
@@ -282,14 +283,9 @@ describe('fillZero', () => {
     expect(fillZero(3, 3)).toBe('003');
   });
 
-  /*
-   * 마지막 "value가 지정된 size보다 큰 자릿수를 가지면 원래 값을 그대로 반환한다"와
-   * 같은 테스트로 불필요 테스트로 판단하여 주석 처리
-   * */
-
-  // test("100을 2자리로 변환하면 '100'을 반환한다", () => {
-  //   expect(fillZero(100, 2)).toBe('100');
-  // });
+  test("100을 2자리로 변환하면 '100'을 반환한다", () => {
+    expect(fillZero(100, 2)).toBe('100');
+  });
 
   test("0을 2자리로 변환하면 '00'을 반환한다", () => {
     expect(fillZero(0, 2)).toBe('00');

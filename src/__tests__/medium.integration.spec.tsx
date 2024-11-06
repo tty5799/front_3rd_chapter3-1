@@ -3,6 +3,8 @@ import { render, screen, waitFor, within } from '@testing-library/react';
 import { UserEvent, userEvent } from '@testing-library/user-event';
 import { http, HttpResponse } from 'msw';
 import { ReactElement } from 'react';
+import { expect } from 'vitest';
+
 import {
   setupMockHandlerCreation,
   setupMockHandlerDeletion,
@@ -11,7 +13,6 @@ import {
 import App from '../App';
 import { server } from '../setupTests';
 import { Event } from '../types';
-import { expect } from 'vitest';
 
 // ! HINT. 이 유틸을 사용해 리액트 컴포넌트를 렌더링해보세요.
 const setup = (element: ReactElement) => {

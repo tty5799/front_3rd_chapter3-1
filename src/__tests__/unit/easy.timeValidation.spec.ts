@@ -1,5 +1,6 @@
-import { getTimeErrorMessage } from '../../utils/timeValidation';
 import { expect } from 'vitest';
+
+import { getTimeErrorMessage } from '../../utils/timeValidation';
 
 describe('getTimeErrorMessage >', () => {
   const startTime = '13:00';
@@ -18,18 +19,30 @@ describe('getTimeErrorMessage >', () => {
   });
 
   it('시작 시간이 종료 시간보다 빠를 때 null을 반환한다', () => {
-    expect(getTimeErrorMessage(endTime, startTime)).toBeNull;
+    const { startTimeError, endTimeError } = getTimeErrorMessage(startTime, endTime);
+
+    expect(startTimeError).toBeNull();
+    expect(endTimeError).toBeNull();
   });
 
   it('시작 시간이 비어있을 때 null을 반환한다', () => {
-    expect(getTimeErrorMessage('', endTime)).toBeNull;
+    const { startTimeError, endTimeError } = getTimeErrorMessage('', endTime);
+
+    expect(startTimeError).toBeNull();
+    expect(endTimeError).toBeNull();
   });
 
   it('종료 시간이 비어있을 때 null을 반환한다', () => {
-    expect(getTimeErrorMessage(startTime, '')).toBeNull;
+    const { startTimeError, endTimeError } = getTimeErrorMessage(startTime, '');
+
+    expect(startTimeError).toBeNull();
+    expect(endTimeError).toBeNull();
   });
 
   it('시작 시간과 종료 시간이 모두 비어있을 때 null을 반환한다', () => {
-    expect(getTimeErrorMessage('', '')).toBeNull;
+    const { startTimeError, endTimeError } = getTimeErrorMessage('', '');
+
+    expect(startTimeError).toBeNull();
+    expect(endTimeError).toBeNull();
   });
 });

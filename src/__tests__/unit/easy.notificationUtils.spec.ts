@@ -1,6 +1,7 @@
+import { expect } from 'vitest';
+
 import { Event } from '../../types';
 import { createNotificationMessage, getUpcomingEvents } from '../../utils/notificationUtils';
-import { expect } from 'vitest';
 
 const events: Event[] = [
   {

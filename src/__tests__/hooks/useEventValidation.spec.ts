@@ -1,7 +1,8 @@
 import { renderHook } from '@testing-library/react';
+import { expect } from 'vitest';
+
 import useEventValidation from '../../hooks/useEvnetValidation.ts';
 import { Event, EventForm } from '../../types.ts';
-import { expect } from 'vitest';
 
 const toastFn = vi.fn();
 

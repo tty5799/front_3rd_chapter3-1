@@ -1,4 +1,5 @@
 import { useToast } from '@chakra-ui/react';
+
 import { Event, EventForm } from '../types.ts';
 
 const useEventValidation = () => {

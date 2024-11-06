@@ -1,5 +1,4 @@
-import React from 'react';
-import { formatWeek, getWeekDates } from '../../utils/dateUtils.ts';
+import { BellIcon } from '@chakra-ui/icons';
 import {
   Box,
   Heading,
@@ -13,9 +12,11 @@ import {
   Tr,
   VStack,
 } from '@chakra-ui/react';
-import { BellIcon } from '@chakra-ui/icons';
-import { Event } from '../../types.ts';
+import React from 'react';
+
 import { weekDays } from '../../constants';
+import { Event } from '../../types.ts';
+import { formatWeek, getWeekDates } from '../../utils/dateUtils.ts';
 
 interface Props {
   currentDate: Date;

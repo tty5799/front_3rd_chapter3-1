@@ -1,6 +1,7 @@
+import { expect } from 'vitest';
+
 import { Event } from '../../types';
 import { getFilteredEvents } from '../../utils/eventUtils';
-import { expect } from 'vitest';
 
 const events: Event[] = [
   {

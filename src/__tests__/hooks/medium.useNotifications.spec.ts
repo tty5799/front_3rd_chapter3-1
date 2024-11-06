@@ -1,7 +1,8 @@
 import { act, renderHook } from '@testing-library/react';
+import { expect } from 'vitest';
+
 import { useNotifications } from '../../hooks/useNotifications.ts';
 import { Event } from '../../types.ts';
-import { expect } from 'vitest';
 
 const events: Event[] = [
   {
