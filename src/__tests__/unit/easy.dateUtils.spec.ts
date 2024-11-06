@@ -39,98 +39,98 @@ describe('getWeekDates', () => {
   it('주중의 날짜(수요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
     const date = new Date('2024-10-09'); // 수요일
     const weekDates = getWeekDates(date);
-    expect(weekDates.map((d) => d.toDateString())).toEqual([
-      'Sun Oct 06 2024',
-      'Mon Oct 07 2024',
-      'Tue Oct 08 2024',
-      'Wed Oct 09 2024',
-      'Thu Oct 10 2024',
-      'Fri Oct 11 2024',
-      'Sat Oct 12 2024',
+    expect(weekDates).toEqual([
+      new Date('2024-10-06'),
+      new Date('2024-10-07'),
+      new Date('2024-10-08'),
+      new Date('2024-10-09'),
+      new Date('2024-10-10'),
+      new Date('2024-10-11'),
+      new Date('2024-10-12'),
     ]);
   });
 
   it('주의 시작(일요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
     const date = new Date('2024-10-06'); // 일요일
     const weekDates = getWeekDates(date);
-    expect(weekDates.map((d) => d.toDateString())).toEqual([
-      'Sun Oct 06 2024',
-      'Mon Oct 07 2024',
-      'Tue Oct 08 2024',
-      'Wed Oct 09 2024',
-      'Thu Oct 10 2024',
-      'Fri Oct 11 2024',
-      'Sat Oct 12 2024',
+    expect(weekDates).toEqual([
+      new Date('2024-10-06'),
+      new Date('2024-10-07'),
+      new Date('2024-10-08'),
+      new Date('2024-10-09'),
+      new Date('2024-10-10'),
+      new Date('2024-10-11'),
+      new Date('2024-10-12'),
     ]);
   });
 
   it('주의 끝(토요일)에 대해 올바른 주의 날짜들을 반환한다', () => {
     const date = new Date('2024-10-12'); // 토요일
     const weekDates = getWeekDates(date);
-    expect(weekDates.map((d) => d.toDateString())).toEqual([
-      'Sun Oct 06 2024',
-      'Mon Oct 07 2024',
-      'Tue Oct 08 2024',
-      'Wed Oct 09 2024',
-      'Thu Oct 10 2024',
-      'Fri Oct 11 2024',
-      'Sat Oct 12 2024',
+    expect(weekDates).toEqual([
+      new Date('2024-10-06'),
+      new Date('2024-10-07'),
+      new Date('2024-10-08'),
+      new Date('2024-10-09'),
+      new Date('2024-10-10'),
+      new Date('2024-10-11'),
+      new Date('2024-10-12'),
     ]);
   });
 
   it('연도를 넘어가는 주의 날짜를 정확히 처리한다 (연말)', () => {
     const date = new Date('2024-12-30'); // 연말 월요일
     const weekDates = getWeekDates(date);
-    expect(weekDates.map((d) => d.toDateString())).toEqual([
-      'Sun Dec 29 2024',
-      'Mon Dec 30 2024',
-      'Tue Dec 31 2024',
-      'Wed Jan 01 2025',
-      'Thu Jan 02 2025',
-      'Fri Jan 03 2025',
-      'Sat Jan 04 2025',
+    expect(weekDates).toEqual([
+      new Date('2024-12-29'),
+      new Date('2024-12-30'),
+      new Date('2024-12-31'),
+      new Date('2025-01-01'),
+      new Date('2025-01-02'),
+      new Date('2025-01-03'),
+      new Date('2025-01-04'),
     ]);
   });
 
   it('연도를 넘어가는 주의 날짜를 정확히 처리한다 (연초)', () => {
     const date = new Date('2024-01-01'); // 연초 월요일
     const weekDates = getWeekDates(date);
-    expect(weekDates.map((d) => d.toDateString())).toEqual([
-      'Sun Dec 31 2023',
-      'Mon Jan 01 2024',
-      'Tue Jan 02 2024',
-      'Wed Jan 03 2024',
-      'Thu Jan 04 2024',
-      'Fri Jan 05 2024',
-      'Sat Jan 06 2024',
+    expect(weekDates).toEqual([
+      new Date('2023-12-31'),
+      new Date('2024-01-01'),
+      new Date('2024-01-02'),
+      new Date('2024-01-03'),
+      new Date('2024-01-04'),
+      new Date('2024-01-05'),
+      new Date('2024-01-06'),
     ]);
   });
 
   it('윤년의 2월 29일을 포함한 주를 올바르게 처리한다', () => {
     const date = new Date('2024-02-29'); // 윤년 2월 29일 목요일
     const weekDates = getWeekDates(date);
-    expect(weekDates.map((d) => d.toDateString())).toEqual([
-      'Sun Feb 25 2024',
-      'Mon Feb 26 2024',
-      'Tue Feb 27 2024',
-      'Wed Feb 28 2024',
-      'Thu Feb 29 2024',
-      'Fri Mar 01 2024',
-      'Sat Mar 02 2024',
+    expect(weekDates).toEqual([
+      new Date('2024-02-25'),
+      new Date('2024-02-26'),
+      new Date('2024-02-27'),
+      new Date('2024-02-28'),
+      new Date('2024-02-29'),
+      new Date('2024-03-01'),
+      new Date('2024-03-02'),
     ]);
   });
 
   it('월의 마지막 날짜를 포함한 주를 올바르게 처리한다', () => {
     const date = new Date('2024-09-30'); // 9월 30일 월요일
     const weekDates = getWeekDates(date);
-    expect(weekDates.map((d) => d.toDateString())).toEqual([
-      'Sun Sep 29 2024',
-      'Mon Sep 30 2024',
-      'Tue Oct 01 2024',
-      'Wed Oct 02 2024',
-      'Thu Oct 03 2024',
-      'Fri Oct 04 2024',
-      'Sat Oct 05 2024',
+    expect(weekDates).toEqual([
+      new Date('2024-09-29'),
+      new Date('2024-09-30'),
+      new Date('2024-10-01'),
+      new Date('2024-10-02'),
+      new Date('2024-10-03'),
+      new Date('2024-10-04'),
+      new Date('2024-10-05'),
     ]);
   });
 });
