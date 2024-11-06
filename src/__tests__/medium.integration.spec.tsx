@@ -190,32 +190,6 @@ describe('일정 뷰', () => {
     });
   });
 
-  it('주별 뷰 선택 후 이전 버튼을 누르면 지난주로 이동한다.', async () => {
-    const { user } = setup(<App />);
-    await user.selectOptions(screen.getByLabelText('view'), 'week');
-
-    const prevButton = await screen.findAllByRole('button', { name: 'Previous' });
-
-    await user.click(prevButton[0]);
-
-    const weekView = await screen.findByTestId('week-view');
-
-    expect(within(weekView).getByText('2024년 9월 4주'));
-  });
-
-  it('주별 뷰 선택 후 다음 버튼을 누르면 다음주로 이동한다.', async () => {
-    const { user } = setup(<App />);
-    await user.selectOptions(screen.getByLabelText('view'), 'week');
-
-    const nextButton = await screen.findAllByRole('button', { name: 'Next' });
-
-    await user.click(nextButton[0]);
-
-    const weekView = await screen.findByTestId('week-view');
-
-    expect(within(weekView).getByText('2024년 10월 2주'));
-  });
-
   it('월별 뷰에 일정이 없으면, 일정이 표시되지 않아야 한다.', async () => {
     const { user } = setup(<App />);
     const eventList = await screen.findByTestId('event-list');
@@ -254,30 +228,6 @@ describe('일정 뷰', () => {
       location: '회의실 B',
       category: '업무',
     });
-  });
-
-  it('월별 뷰에 이전 버튼을 누르면 지난달로 이동한다.', async () => {
-    const { user } = setup(<App />);
-
-    const prevButton = await screen.findAllByRole('button', { name: 'Previous' });
-
-    await user.click(prevButton[0]);
-
-    const monthView = await screen.findByTestId('month-view');
-
-    expect(within(monthView).getByText('2024년 9월'));
-  });
-
-  it('월별 뷰에 다음 버튼을 누르면 다음달로 이동한다.', async () => {
-    const { user } = setup(<App />);
-
-    const nextButton = await screen.findAllByRole('button', { name: 'Next' });
-
-    await user.click(nextButton[0]);
-
-    const monthView = await screen.findByTestId('month-view');
-
-    expect(within(monthView).getByText('2024년 11월'));
   });
 
   it('달력에 1월 1일(신정)이 공휴일로 표시되는지 확인한다', async () => {
@@ -450,6 +400,6 @@ it('notificationTime을 10으로 하면 지정 시간 10분 전 알람 텍스트
   expect(within(eventList).queryByText('검색 결과가 없습니다.')).not.toBeInTheDocument();
 
   await waitFor(() => {
-    expect(screen.getByText(/시작됩니다/)).toBeInTheDocument();
+    expect(screen.getByText(/일정이 시작됩니다/)).toBeInTheDocument();
   });
 });

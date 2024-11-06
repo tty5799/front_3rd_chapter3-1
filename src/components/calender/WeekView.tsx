@@ -14,8 +14,8 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { BellIcon } from '@chakra-ui/icons';
-import { weekDays } from '../../App.tsx';
 import { Event } from '../../types.ts';
+import { weekDays } from '../../constants';
 
 interface Props {
   currentDate: Date;
