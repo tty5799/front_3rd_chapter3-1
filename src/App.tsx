@@ -42,8 +42,9 @@ import { useSearch } from './hooks/useSearch.ts';
 import { Event, EventForm, RepeatType } from './types';
 import { findOverlappingEvents } from './utils/eventOverlap';
 import { getTimeErrorMessage } from './utils/timeValidation';
-import WeekView from './components/WeekView.tsx';
-import MonthView from './components/MonthView.tsx';
+import WeekView from './components/calender/WeekView.tsx';
+import MonthView from './components/calender/MonthView.tsx';
+import Calender from './components/calender/Calender.tsx';
 
 const categories = ['업무', '개인', '가족', '기타'];
 
@@ -279,47 +280,7 @@ function App() {
             {editingEvent ? '일정 수정' : '일정 추가'}
           </Button>
         </VStack>
-
-        <VStack flex={1} spacing={5} align="stretch">
-          <Heading>일정 보기</Heading>
-
-          <HStack mx="auto" justifyContent="space-between">
-            <IconButton
-              aria-label="Previous"
-              icon={<ChevronLeftIcon />}
-              onClick={() => navigate('prev')}
-            />
-            <Select
-              aria-label="view"
-              value={view}
-              onChange={(e) => setView(e.target.value as 'week' | 'month')}
-            >
-              <option value="week">Week</option>
-              <option value="month">Month</option>
-            </Select>
-            <IconButton
-              aria-label="Next"
-              icon={<ChevronRightIcon />}
-              onClick={() => navigate('next')}
-            />
-          </HStack>
-
-          {view === 'week' && (
-            <WeekView
-              currentDate={currentDate}
-              notifiedEvents={notifiedEvents}
-              filteredEvents={filteredEvents}
-            />
-          )}
-          {view === 'month' && (
-            <MonthView
-              currentDate={currentDate}
-              holidays={holidays}
-              notifiedEvents={notifiedEvents}
-              filteredEvents={filteredEvents}
-            />
-          )}
-        </VStack>
+        <Calender />
 
         <VStack data-testid="event-list" w="500px" h="full" overflowY="auto">
           <FormControl>
