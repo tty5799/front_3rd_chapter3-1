@@ -14,17 +14,16 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { BellIcon } from '@chakra-ui/icons';
-import { useCalendarView } from '../hooks/useCalendarView.ts';
 import { weekDays } from '../App.tsx';
 import { Event } from '../types';
 
 interface Props {
+  currentDate: Date;
   notifiedEvents: string[];
   filteredEvents: Event[];
 }
 
-const WeekView: React.FC<Props> = ({ notifiedEvents, filteredEvents }) => {
-  const { currentDate } = useCalendarView();
+const WeekView: React.FC<Props> = ({ currentDate, notifiedEvents, filteredEvents }) => {
   const weekDates = getWeekDates(currentDate);
 
   return (

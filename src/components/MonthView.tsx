@@ -15,16 +15,16 @@ import {
 } from '@chakra-ui/react';
 import { BellIcon } from '@chakra-ui/icons';
 import { weekDays } from '../App.tsx';
-import { useCalendarView } from '../hooks/useCalendarView.ts';
 import { Event } from '../types.ts';
 
 interface Props {
+  currentDate: Date;
+  holidays: { [key: string]: string };
   notifiedEvents: string[];
   filteredEvents: Event[];
 }
 
-const MonthView: React.FC<Props> = ({ notifiedEvents, filteredEvents }) => {
-  const { currentDate, holidays } = useCalendarView();
+const MonthView: React.FC<Props> = ({ currentDate, holidays, notifiedEvents, filteredEvents }) => {
   const weeks = getWeeksAtMonth(currentDate);
 
   return (

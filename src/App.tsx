@@ -27,14 +27,8 @@ import {
   IconButton,
   Input,
   Select,
-  Table,
-  Tbody,
-  Td,
   Text,
-  Th,
-  Thead,
   Tooltip,
-  Tr,
   useToast,
   VStack,
 } from '@chakra-ui/react';
@@ -46,14 +40,6 @@ import { useEventOperations } from './hooks/useEventOperations.ts';
 import { useNotifications } from './hooks/useNotifications.ts';
 import { useSearch } from './hooks/useSearch.ts';
 import { Event, EventForm, RepeatType } from './types';
-import {
-  formatDate,
-  formatMonth,
-  formatWeek,
-  getEventsForDay,
-  getWeekDates,
-  getWeeksAtMonth,
-} from './utils/dateUtils';
 import { findOverlappingEvents } from './utils/eventOverlap';
 import { getTimeErrorMessage } from './utils/timeValidation';
 import WeekView from './components/WeekView.tsx';
@@ -319,10 +305,19 @@ function App() {
           </HStack>
 
           {view === 'week' && (
-            <WeekView notifiedEvents={notifiedEvents} filteredEvents={filteredEvents} />
+            <WeekView
+              currentDate={currentDate}
+              notifiedEvents={notifiedEvents}
+              filteredEvents={filteredEvents}
+            />
           )}
           {view === 'month' && (
-            <MonthView notifiedEvents={notifiedEvents} filteredEvents={filteredEvents} />
+            <MonthView
+              currentDate={currentDate}
+              holidays={holidays}
+              notifiedEvents={notifiedEvents}
+              filteredEvents={filteredEvents}
+            />
           )}
         </VStack>
 
