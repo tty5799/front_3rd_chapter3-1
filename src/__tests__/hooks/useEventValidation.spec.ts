@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react';
 import useEventValidation from '../../hooks/useEvnetValidation.ts';
 import { Event, EventForm } from '../../types.ts';
 import { expect } from 'vitest';

@@ -218,6 +218,7 @@ describe('findOverlappingEvents', () => {
     };
 
     const overlappingEvents = findOverlappingEvents(newEvent, events);
+
     expect(overlappingEvents.map((event) => event.id)).toEqual(['1', '3']);
   });
 

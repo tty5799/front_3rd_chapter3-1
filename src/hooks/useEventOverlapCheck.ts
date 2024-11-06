@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Event, EventForm } from '../types';
 import { findOverlappingEvents } from '../utils/eventOverlap';
 
-const useOverlapCheck = () => {
+const useEventOverlapCheck = () => {
   const [isOverlapDialogOpen, setIsOverlapDialogOpen] = useState(false);
   const [overlappingEvents, setOverlappingEvents] = useState<Event[]>([]);
 
@@ -19,4 +19,4 @@ const useOverlapCheck = () => {
   return { isOverlapDialogOpen, overlappingEvents, checkOverlap, setIsOverlapDialogOpen };
 };
 
-export default useOverlapCheck;
+export default useEventOverlapCheck;

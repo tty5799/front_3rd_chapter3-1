@@ -42,7 +42,7 @@ import { getTimeErrorMessage } from './utils/timeValidation';
 import WeekView from './components/calender/WeekView.tsx';
 import MonthView from './components/calender/MonthView.tsx';
 import { categories, notificationOptions } from './constants';
-import useOverlapCheck from './hooks/useOverlapCheck.ts';
+import useEventOverlapCheck from './hooks/useEventOverlapCheck.ts';
 import useEventValidation from './hooks/useEvnetValidation.ts';
 
 function App() {
@@ -87,7 +87,7 @@ function App() {
   const { view, setView, currentDate, holidays, navigate } = useCalendarView();
   const { searchTerm, filteredEvents, setSearchTerm } = useSearch(events, currentDate, view);
   const { isOverlapDialogOpen, overlappingEvents, checkOverlap, setIsOverlapDialogOpen } =
-    useOverlapCheck();
+    useEventOverlapCheck();
   const { validate } = useEventValidation();
   const cancelRef = useRef<HTMLButtonElement>(null);
 
