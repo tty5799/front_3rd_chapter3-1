@@ -34,9 +34,20 @@ describe('getUpcomingEvents', () => {
   it('알림 시간이 정확히 도래한 이벤트를 반환한다', () => {
     const date = new Date('2024-07-01T11:59');
 
-    const resultEvents = [events[1]];
-
-    expect(getUpcomingEvents(events, date, [])).toEqual(resultEvents);
+    expect(getUpcomingEvents(events, date, [])).toEqual([
+      {
+        id: '2',
+        title: '이벤트 5',
+        date: '2024-07-01',
+        startTime: '12:00',
+        endTime: '15:00',
+        description: '주간 팀 미팅',
+        location: '회의실 A',
+        category: '업무',
+        repeat: { type: 'none', interval: 0 },
+        notificationTime: 1,
+      },
+    ]);
   });
 
   it('이미 알림이 간 이벤트는 제외한다', () => {

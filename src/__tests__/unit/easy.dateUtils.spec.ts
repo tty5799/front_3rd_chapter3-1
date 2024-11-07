@@ -180,7 +180,20 @@ describe('getEventsForDay', () => {
   ];
 
   it('특정 날짜(1일)에 해당하는 이벤트만 정확히 반환한다', () => {
-    expect(getEventsForDay(events, 1)).toEqual([events[0]]);
+    expect(getEventsForDay(events, 1)).toEqual([
+      {
+        id: '2b7545a6-ebee-426c-b906-2329bc8d62bd',
+        title: '팀 회의',
+        date: '2024-11-01',
+        startTime: '10:00',
+        endTime: '11:00',
+        description: '주간 팀 미팅',
+        location: '회의실 A',
+        category: '업무',
+        repeat: { type: 'none', interval: 0 },
+        notificationTime: 1,
+      },
+    ]);
   });
 
   it('해당 날짜에 이벤트가 없을 경우 빈 배열을 반환한다', () => {

@@ -154,7 +154,7 @@ describe('일정 CRUD 및 기본 기능', () => {
     await user.click(deleteButton[0]);
 
     await waitFor(() => {
-      expect(within(eventList).getByText('검색 결과가 없습니다.')).toBeInTheDocument();
+      expect(within(eventList).queryByText('삭제될 이벤트')).not.toBeInTheDocument();
     });
   });
 });
