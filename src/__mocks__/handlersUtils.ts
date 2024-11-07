@@ -4,7 +4,7 @@ import { server } from '../setupTests';
 import { Event } from '../types';
 
 // ? Medium: 아래 여러가지 use 함수는 어떤 역할을 할까요? 어떻게 사용될 수 있을까요?
-export const setupMockGetEvents = (initEvents = [] as Event[]) => {
+export const setupMockHandlerGetEvents = (initEvents = [] as Event[]) => {
   server.use(
     http.get('/api/events', () => {
       return HttpResponse.json({ events: initEvents });

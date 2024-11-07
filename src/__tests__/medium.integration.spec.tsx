@@ -5,7 +5,7 @@ import { ReactElement } from 'react';
 import { expect } from 'vitest';
 
 import {
-  setupMockGetEvents,
+  setupMockHandlerGetEvents,
   setupMockHandlerCreation,
   setupMockHandlerDeletion,
   setupMockHandlerUpdating,
@@ -183,7 +183,7 @@ describe('일정 뷰', () => {
         notificationTime: 10,
       },
     ];
-    setupMockGetEvents(mockEvents);
+    setupMockHandlerGetEvents(mockEvents);
 
     const { user } = setup(<App />);
     const eventList = screen.getByTestId('event-list');
@@ -229,7 +229,7 @@ describe('일정 뷰', () => {
         notificationTime: 10,
       },
     ];
-    setupMockGetEvents(mockEvents);
+    setupMockHandlerGetEvents(mockEvents);
 
     setup(<App />);
     const eventList = screen.getByTestId('event-list');
@@ -278,7 +278,7 @@ describe('검색 기능', () => {
         notificationTime: 10,
       },
     ];
-    setupMockGetEvents(mockEvents);
+    setupMockHandlerGetEvents(mockEvents);
 
     const { user } = setup(<App />);
 
@@ -317,7 +317,7 @@ describe('검색 기능', () => {
       },
     ];
 
-    setupMockGetEvents(mockEvents);
+    setupMockHandlerGetEvents(mockEvents);
 
     const { user } = setup(<App />);
 
@@ -409,7 +409,7 @@ it('notificationTime을 10으로 하면 지정 시간 10분 전 알람 텍스트
       notificationTime: 10,
     },
   ];
-  setupMockGetEvents(mockEvents);
+  setupMockHandlerGetEvents(mockEvents);
 
   setup(<App />);
 
