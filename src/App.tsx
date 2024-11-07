@@ -36,11 +36,10 @@ import { useRef } from 'react';
 import MonthView from './components/calender/MonthView.tsx';
 import WeekView from './components/calender/WeekView.tsx';
 import { categories, notificationOptions } from './constants';
+import { useAddOrUpdateEvent } from './hooks/useAddOrUpdateEvent.ts';
 import { useCalendarView } from './hooks/useCalendarView.ts';
 import { useEventForm } from './hooks/useEventForm.ts';
 import { useEventOperations } from './hooks/useEventOperations.ts';
-import useEventOverlapCheck from './hooks/useEventOverlapCheck.ts';
-import useEventValidation from './hooks/useEvnetValidation.ts';
 import { useNotifications } from './hooks/useNotifications.ts';
 import { useSearch } from './hooks/useSearch.ts';
 import { Event, EventForm, RepeatType } from './types';
@@ -87,9 +86,8 @@ function App() {
   const { notifications, notifiedEvents, setNotifications } = useNotifications(events);
   const { view, setView, currentDate, holidays, navigate } = useCalendarView();
   const { searchTerm, filteredEvents, setSearchTerm } = useSearch(events, currentDate, view);
-  const { isOverlapDialogOpen, overlappingEvents, checkOverlap, setIsOverlapDialogOpen } =
-    useEventOverlapCheck();
-  const { validate } = useEventValidation();
+  const { isOverlapDialogOpen, overlappingEvents, addOrUpdateEvent, setIsOverlapDialogOpen } =
+    useAddOrUpdateEvent(startTimeError, endTimeError, resetForm, saveEvent);
   const cancelRef = useRef<HTMLButtonElement>(null);
 
   const eventData: Event | EventForm = {
@@ -107,15 +105,6 @@ function App() {
       endDate: repeatEndDate || undefined,
     },
     notificationTime,
-  };
-
-  const addOrUpdateEvent = async () => {
-    if (!validate(eventData, startTimeError, endTimeError)) return;
-
-    if (!checkOverlap(eventData, events)) {
-      await saveEvent(eventData);
-      resetForm();
-    }
   };
 
   return (
@@ -240,7 +229,11 @@ function App() {
             </VStack>
           )}
 
-          <Button data-testid="event-submit-button" onClick={addOrUpdateEvent} colorScheme="blue">
+          <Button
+            data-testid="event-submit-button"
+            onClick={() => addOrUpdateEvent(eventData, events)}
+            colorScheme="blue"
+          >
             {editingEvent ? '일정 수정' : '일정 추가'}
           </Button>
         </VStack>
