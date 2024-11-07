@@ -87,7 +87,7 @@ function App() {
   const { view, setView, currentDate, holidays, navigate } = useCalendarView();
   const { searchTerm, filteredEvents, setSearchTerm } = useSearch(events, currentDate, view);
   const { isOverlapDialogOpen, overlappingEvents, addOrUpdateEvent, setIsOverlapDialogOpen } =
-    useAddOrUpdateEvent(startTimeError, endTimeError, resetForm, saveEvent);
+    useAddOrUpdateEvent(resetForm, saveEvent);
   const cancelRef = useRef<HTMLButtonElement>(null);
 
   const eventData: Event | EventForm = {
@@ -231,7 +231,7 @@ function App() {
 
           <Button
             data-testid="event-submit-button"
-            onClick={() => addOrUpdateEvent(eventData, events)}
+            onClick={() => addOrUpdateEvent(eventData, events, startTimeError, endTimeError)}
             colorScheme="blue"
           >
             {editingEvent ? '일정 수정' : '일정 추가'}

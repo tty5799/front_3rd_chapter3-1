@@ -5,8 +5,6 @@ import { Event, EventForm } from '../types.ts';
 import { findOverlappingEvents } from '../utils/eventOverlap.ts';
 
 export const useAddOrUpdateEvent = (
-  startTimeError: string | null,
-  endTimeError: string | null,
   resetForm: () => void,
   saveEvent: (eventData: Event | EventForm) => Promise<void>
 ) => {
@@ -14,7 +12,12 @@ export const useAddOrUpdateEvent = (
   const [isOverlapDialogOpen, setIsOverlapDialogOpen] = useState(false);
   const [overlappingEvents, setOverlappingEvents] = useState<Event[]>([]);
 
-  const addOrUpdateEvent = async (eventData: Event | EventForm, events: Event[]) => {
+  const addOrUpdateEvent = async (
+    eventData: Event | EventForm,
+    events: Event[],
+    startTimeError: string | null,
+    endTimeError: string | null
+  ) => {
     const { title, date, startTime, endTime } = eventData;
 
     if (!title || !date || !startTime || !endTime) {

@@ -101,7 +101,7 @@ describe('일정 CRUD 및 기본 기능', () => {
       expect(within(eventList).getByText('기존 회의')).toBeInTheDocument();
     });
 
-    const editButton = await within(eventList).findAllByRole('button', { name: 'Edit event' });
+    const editButton = within(eventList).getAllByRole('button', { name: 'Edit event' });
 
     await user.click(editButton[0]);
 
