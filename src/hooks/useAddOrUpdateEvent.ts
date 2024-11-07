@@ -6,7 +6,7 @@ import { findOverlappingEvents } from '../utils/eventOverlap.ts';
 
 export const useAddOrUpdateEvent = (
   resetForm: () => void,
-  saveEvent: (eventData: Event | EventForm) => Promise<void>
+  saveEvent: (_eventData: Event | EventForm) => Promise<void>
 ) => {
   const toast = useToast();
   const [isOverlapDialogOpen, setIsOverlapDialogOpen] = useState(false);
