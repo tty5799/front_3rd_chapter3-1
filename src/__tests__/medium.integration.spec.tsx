@@ -1,17 +1,16 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import { UserEvent, userEvent } from '@testing-library/user-event';
-import { http, HttpResponse } from 'msw';
 import { ReactElement } from 'react';
 import { expect } from 'vitest';
 
 import {
+  setupMockGetEvents,
   setupMockHandlerCreation,
   setupMockHandlerDeletion,
   setupMockHandlerUpdating,
 } from '../__mocks__/handlersUtils';
 import App from '../App';
-import { server } from '../setupTests';
 import { Event } from '../types';
 
 // ! HINT. 이 유틸을 사용해 리액트 컴포넌트를 렌더링해보세요.
@@ -170,7 +169,7 @@ describe('일정 뷰', () => {
   });
 
   it('주별 뷰 선택 후 해당 일자에 일정이 존재한다면 해당 일정이 정확히 표시된다', async () => {
-    const mockEvents = [
+    const mockEvents: Event[] = [
       {
         id: '1',
         title: '기존 회의',
@@ -184,7 +183,7 @@ describe('일정 뷰', () => {
         notificationTime: 10,
       },
     ];
-    server.use(http.get('/api/events', () => HttpResponse.json({ events: mockEvents })));
+    setupMockGetEvents(mockEvents);
 
     const { user } = setup(<App />);
     const eventList = screen.getByTestId('event-list');
@@ -216,7 +215,7 @@ describe('일정 뷰', () => {
   });
 
   it('월별 뷰에 일정이 정확히 표시되는지 확인한다', async () => {
-    const mockEvents = [
+    const mockEvents: Event[] = [
       {
         id: '1',
         title: '기존 회의',
@@ -230,7 +229,7 @@ describe('일정 뷰', () => {
         notificationTime: 10,
       },
     ];
-    server.use(http.get('/api/events', () => HttpResponse.json({ events: mockEvents })));
+    setupMockGetEvents(mockEvents);
 
     setup(<App />);
     const eventList = screen.getByTestId('event-list');
@@ -279,7 +278,7 @@ describe('검색 기능', () => {
         notificationTime: 10,
       },
     ];
-    server.use(http.get('/api/events', () => HttpResponse.json({ events: mockEvents })));
+    setupMockGetEvents(mockEvents);
 
     const { user } = setup(<App />);
 
@@ -291,7 +290,7 @@ describe('검색 기능', () => {
   });
 
   it('검색어를 지우면 모든 일정이 다시 표시되어야 한다', async () => {
-    const mockEvents = [
+    const mockEvents: Event[] = [
       {
         id: '1',
         title: '팀 회의',
@@ -318,7 +317,7 @@ describe('검색 기능', () => {
       },
     ];
 
-    server.use(http.get('/api/events', () => HttpResponse.json({ events: mockEvents })));
+    setupMockGetEvents(mockEvents);
 
     const { user } = setup(<App />);
 
@@ -410,7 +409,7 @@ it('notificationTime을 10으로 하면 지정 시간 10분 전 알람 텍스트
       notificationTime: 10,
     },
   ];
-  server.use(http.get('/api/events', () => HttpResponse.json({ events: mockEvents })));
+  setupMockGetEvents(mockEvents);
 
   setup(<App />);
 
